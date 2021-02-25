@@ -3,7 +3,7 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 
 //Object containing license info
-const licences = {
+const licenses = {
    "MIT License": {
       badge: '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)'
    },
@@ -151,17 +151,24 @@ const questions = [
    }
 ]
 
+
 //Function to write README file
 function generate(input) {
-
+   
    const { projectTitle, projectDescription, includeTOC, installation, usage, license, contribution, confirmCredits, credits, confirmTests, testInstructions, email, username } = input;
-
+   
    //Code for generating license badges, pulled out of the template literal in order to be commented out appropriately
-   // ${license.forEach(element => {
-   //    return licenses[element].badge;
-   // })}\n
-
+   let licenseString = "";
+   license.forEach(element => {
+      console.log(licenses[element].badge)
+      licenseString += `${licenses[element].badge} `;
+   });
+   
+   console.log(licenseString);
+ 
+   
    return `# ${projectTitle}\n
+   ${licenseString}\n
    
    ### Description \n ${projectDescription}\n
 
