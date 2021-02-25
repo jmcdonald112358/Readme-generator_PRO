@@ -165,22 +165,18 @@ function generate(input) {
    
    //Template 
    return `# ${projectTitle}\n
-   ${licenseString}\n
+${licenseString}\n
    
-   ### Description \n ${projectDescription}\n
+### Description \n ${projectDescription}\n
 
-   ${includeTOC && `### Table of Contents \n - [Installation](#installation)\n - [Usage](#usage)\n - [License](#license)\n - [How to contribute](#contribute)\n - [Credits (conditional)](#credits)\n - [Test instructions (conditional)](#tests)\n - [Questions](#questions)\n\n`}
-
+${includeTOC ? `### Table of Contents \n - [Installation](#installation)\n - [Usage](#usage)\n - [License](#license)\n - [How to contribute](#contribute)\n - [Credits (conditional)](#credits)\n - [Test instructions (conditional)](#tests)\n - [Questions](#questions)\n\n` : ''}
 
 ### Installation \n ${installation}\n
-   ### Usage \n ${usage}\n
+### Usage \n ${usage}\n
 ### License \n Licensed under the following: ${license.join(', ')}\n
-   ### Contributing \n ${contribution}\n
-
-   ${confirmCredits ? `### Accreditations \n ${credits}\n` : ''}
-
+### Contributing \n ${contribution}\n
+${confirmCredits ? `### Accreditations \n ${credits}\n` : ''}
 ${confirmTests ? `### Tests \n ${testInstructions}\n` : ''}
-   
 ### Questions \n If you have any questions about the project, please feel free to message at **${email}**, or connect with me on GitHub: **[${username}](https://github.com/${username})** \n`
 }
 
