@@ -42,8 +42,6 @@ To be added to the repository as a collaborator, please email me at jmcdonald112
 ### Additional notes:
 - This README itself was generated using the generator of this project, effectively highlighting the majority of the output of the application.
 - Future updates to the project will include:
-   - Switching to the 'editor' prompt for the Description to support multi-line content in that section, as well as make it easier to include screenshots
    - A conditional prompt to specify the filename if the user wants or needs to use a filename other than README.md
    - Conditional prompts for 'Links' and 'Additional notes' so user can add content for those sections if necessary
-   - Improvements to overall formatting of the template
    - Publishing as an installable package that can be installed and used in any project
