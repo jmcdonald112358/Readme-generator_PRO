@@ -157,16 +157,13 @@ function generate(input) {
    
    const { projectTitle, projectDescription, includeTOC, installation, usage, license, contribution, confirmCredits, credits, confirmTests, testInstructions, email, username } = input;
    
-   //Code for generating license badges, pulled out of the template literal in order to be commented out appropriately
+   //Code for generating license badges as a single string
    let licenseString = "";
    license.forEach(element => {
-      console.log(licenses[element].badge)
-      licenseString += `${licenses[element].badge} `;
+      licenseString += `${licenses[element].badge}  `;
    });
    
-   console.log(licenseString);
- 
-   
+   //Template 
    return `# ${projectTitle}\n
    ${licenseString}\n
    
@@ -178,9 +175,9 @@ function generate(input) {
 ### Installation \n ${installation}\n
    ### Usage \n ${usage}\n
 ### License \n Licensed under the following: ${license.join(', ')}\n
-   ### Contribute \n ${contribution}\n
+   ### Contributing \n ${contribution}\n
 
-   ${confirmCredits ? `### Credits \n ${credits}\n` : ''}
+   ${confirmCredits ? `### Accreditations \n ${credits}\n` : ''}
 
    ${confirmTests ? `### Tests \n ${testInstructions}\n` : ''}
    
