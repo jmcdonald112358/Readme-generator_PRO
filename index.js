@@ -36,10 +36,10 @@ const questions = [
 
 //Description
    {
-      type: 'input',
+      type: 'editor',
       message: 'Enter the description of the project: ',
       name: 'projectDescription',
-      default: 'Type description and press enter to continue...',
+      default: `Edit contents here, including removing these instructions.\nUse markdown for formatting multi-step usage instructions and inserting screenshots, then save and close window to continue.`,
    },
 
 //Table of contents
@@ -62,7 +62,7 @@ const questions = [
    {
       type: 'editor',
       message: 'Provide instructions for using the application: ',
-      default: 'Edit contents here, including removing these instructions, using markdown for formatting multi-step usage instructions and inserting screenshots, then save and close window to return to the program and continue.',
+      default: `Edit contents here, including removing these instructions.\nUse markdown for formatting multi-step usage instructions and inserting screenshots, then save and close window to continue.`,
       name: 'usage'
    },
 
@@ -112,7 +112,7 @@ const questions = [
    {
       type: 'editor',
       message: 'Provide details on applicable credits: ',
-      default: 'Edit contents here, including removing these instructions, then save and close window to return to the program and continue. List collaborators with links to their GitHub profiles, attribute third-party assets and their creators, and link any tutorials or other resources. Use markdown to format content and insert links if necessary.',
+      default: `Edit contents here, including removing these instructions, then save and close window to return to the program and continue.\nList collaborators with links to their GitHub profiles, attribute third-party assets and their creators, and link any tutorials or other resources.\nUse markdown to format content and insert links if necessary.`,
       name: 'credits',
       when: function (input) {
          return input.confirmCredits;
@@ -164,26 +164,25 @@ function generate(input) {
    });
    
    //Template 
-   return `# ${projectTitle}\n
+   return `
+# ${projectTitle}\n
 ${licenseString}\n
-   
-### Description \n ${projectDescription}\n
-
-${includeTOC ? `### Table of Contents \n - [Installation](#installation)\n - [Usage](#usage)\n - [License](#license)\n - [How to contribute](#contribute)\n - [Credits (conditional)](#credits)\n - [Test instructions (conditional)](#tests)\n - [Questions](#questions)\n\n` : ''}
-
-### Installation \n ${installation}\n
-### Usage \n ${usage}\n
-### License \n Licensed under the following: ${license.join(', ')}\n
-### Contributing \n ${contribution}\n
-${confirmCredits ? `### Accreditations \n ${credits}\n` : ''}
-${confirmTests ? `### Tests \n ${testInstructions}\n` : ''}
-### Questions \n If you have any questions about the project, please feel free to message at **${email}**, or connect with me on GitHub: **[${username}](https://github.com/${username})** \n`
-}
+### Description\n${projectDescription}\n
+${includeTOC ? `### Table of Contents\n- [Installation](#installation)\n- [Usage](#usage)\n- [License](#license)\n- [How to contribute](#contribute)\n- [Credits (conditional)](#credits)\n- [Test instructions (conditional)](#tests)\n- [Questions](#questions)\n` : ''}
+### Installation\n${installation}\n
+### Usage\n${usage}\n
+### License\nLicensed under the following: ${license.join(', ')}\n
+### Contributing\n${contribution}\n
+${confirmCredits ? `### Accreditations\n${credits}\n` : ''}
+${confirmTests ? `### Tests\n${testInstructions}\n` : ''}
+### Questions\nIf you have any questions about the project, please feel free to message at **${email}**, or connect with me on GitHub: **[${username}](https://github.com/${username})**\n
+`}
 
 //Function to initialize program 
 async function init() {
    const input = await inquirer.prompt(questions);
    fs.writeFile("README.md", generate(input), (err) => err && console.error(err));
+   console.log("README generated successfully!");
 }
 
 //Function call to initialize program
