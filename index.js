@@ -179,7 +179,7 @@ function generate(input) {
 
    ${confirmCredits ? `### Accreditations \n ${credits}\n` : ''}
 
-   ${confirmTests ? `### Tests \n ${testInstructions}\n` : ''}
+${confirmTests ? `### Tests \n ${testInstructions}\n` : ''}
    
 ### Questions \n If you have any questions about the project, please feel free to message at **${email}**, or connect with me on GitHub: **[${username}](https://github.com/${username})** \n`
 }
